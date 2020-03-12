@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Bellota&display=swap');
+
+h1, h2 {
+    font-family: Bellota, Arial, sans-serif;
+    text-align: center;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #999999;
+    top: 0;
+}
+a:link, a:visited {
+    font-family: Arial,sans-serif;
+    text-decoration-line: none;
+    color: black;
+}
+a:hover {
+text-decoration-line: underline;
+}
+ol {
+    font-family: Arial,sans-serif;
+}
+
+#hamburger {
+    color: white;
+    background-image: url("../images/hamburger.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+#hamburger a:link, #hamburger a:visited {
+    text-decoration-line: none;
+    color: white;
+}
+#hamburger a:hover {
+    text-decoration-line: underline;
+}
+#lax {
+    background-image: url("../images/lax.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: padding-box;
+}

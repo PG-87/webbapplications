@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    font-family: "Berlin Sans FB", sans-serif;
+    text-shadow: 2px 2px 2px darkgray;
+    text-align: center;
+    font-size: 30px;
+}
+
+p {
+    font-family: "Times New Roman", sans-serif;
+}
+
+section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto 50px;
+    grid-template-areas:
+            "header"
+            "navigation"
+            "main-content"
+            "footer";
+    grid-gap: 0;
+}
+header{
+    grid-area: header;
+    background-color: #5A8CAD;
+    padding: 10px;
+}
+
+nav{
+    background-color: #FAC87F;
+    grid-area: navigation;
+    display: flex;
+    flex-direction: row;
+}
+
+nav a{
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    height: 25px;
+}
+
+nav a:hover {
+    background-color: #AD803E;
+    color: white;
+}
+
+.main-container{
+    display: grid;
+    margin: 10px auto;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+.grid-item {
+    padding: 10px;
+    background-color: #FAC87F;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 0;
+}
+
+tr:nth-child(even) {
+    background-color: lightblue;
+}
+
+img {
+    width: auto;
+    height: 300px;
+}
