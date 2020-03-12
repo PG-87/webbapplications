@@ -29,14 +29,18 @@ section {
 header{
     grid-area: header;
     background-color: #5A8CAD;
-    padding: 10px;
+    padding: 0;
+    margin: 0;
+    height: 140px;
 }
-
 nav{
+
     background-color: #FAC87F;
     grid-area: navigation;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 nav a{
@@ -44,7 +48,8 @@ nav a{
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    height: 25px;
+    padding: 10px;
+    text-space: 5;
 }
 
 nav a:hover {
@@ -55,17 +60,36 @@ nav a:hover {
 .main-container{
     display: grid;
     margin: 10px auto;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
+    grid-gap: 20px;
 }
-
 .grid-item {
     padding: 10px;
-    background-color: #FAC87F;
+}
+.grid-item-center{
+    justify-self: center;
+}
+.main-flex {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 10px;
+    max-width: 100%;
+    flex-direction: unset;
+}
+.grid-img {
+    flex: 25%;
+    padding: 5px;
+}
+.grid-img img {
+    margin-top: 8px;
+    vertical-align: middle;
 }
 
 table {
     border-collapse: collapse;
+    width: 300px;
 }
 
 th, td {
@@ -81,4 +105,21 @@ tr:nth-child(even) {
 img {
     width: auto;
     height: 300px;
+}
+
+@media screen and (min-width: 800px)  {
+    header {
+        position: sticky;
+        top: 0;
+    }
+    nav {
+        position: sticky;
+        top: 140px;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+    }
+    nav a {
+        text-align: center;
+    }
 }
