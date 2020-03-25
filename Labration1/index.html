@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PMDB</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<section class="grid-container">
+    <header>
+        <h1>PGMDB</h1>
+    </header>
+    <nav>
+        <a href="index.html" class="active">Startsida</a>
+        <div id="links">
+        <a href="sonic.html">Sonic: The Hedgehog</a>
+        <a href="jumanji.html">Jumanji: The next level</a>
+        <a href="avengers.html">Avengers: Endgame</a>
+        <a href="jurassic.html">Jurassic World</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="hamburgerMenu()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </nav>
+    <main class="main-container">
+        <article class="content-container">
+            <p align="center">
+                Välkommen till PG Movie Data Base!
+            </p>
+        </article>
+        <article class="content-container">
+            LÄGG TILL NÅGOT GÖTT HÄR KANSKE?
+        </article>
+    </main>
+</section>
+<script>
+    function hamburgerMenu() {
+        var x = document.getElementById("links");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+</body>
+</html>

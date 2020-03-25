@@ -1,0 +1,134 @@
+/* MOBILE SCREEN */
+
+section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto 50px;
+    grid-template-areas: "header" "navigation" "main-content" "footer";
+    grid-gap: 0;
+
+}
+
+header {
+    position: sticky;
+    grid-area: header;
+    background-color: #7ee0c9;
+    padding: 0;
+    margin: 0;
+    height: 80px;
+    text-align: center;
+    top: 0;
+}
+
+nav {
+    overflow: hidden;
+    position: sticky;
+    background-color: bisque;
+    grid-area: navigation;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 14px;
+    text-space: 5;
+    color: black;
+    display: block;
+}
+
+nav a:hover:not(.active) {
+    background-color: white;
+    color: #5A8CAD;
+}
+
+nav a.icon {
+    background: darkgrey;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+nav #links {
+    display: none;
+}
+
+.active {
+    background-color: black;
+    color: white;
+}
+
+body {
+    background-color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    grid-gap: 20px;
+    background-color: #5A8CAD;
+
+}
+
+.content-container {
+    margin: 10px;
+    padding: 10px;
+}
+
+.test-container {
+    background-color: #7ee0c9;
+}
+
+img.moviepic {
+    height: 300px;
+    width: auto;
+
+}
+
+/* Desktop */
+@media screen and (min-width: 1025px) {
+
+    .main-container {
+        width: 1240px;
+        flex-direction: row;
+        justify-self: center;
+    }
+
+    nav {
+        overflow: hidden;
+        width: 1240px;
+        flex-direction: row;
+        justify-self: center;
+        display: block;
+    }
+
+    nav #links {
+        display: flex;
+    }
+
+    nav a.icon {
+        display: none;
+    }
+
+    header {
+        height: 140px;
+        width: 1240px;
+        justify-self: center;
+    }
+
+    img.moviepic {
+        height: 500px;
+        width: auto;
+    }
+
+}
