@@ -2,25 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae2c8d08-7b72-47b5-8252-60df0df10d1f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Examples/Queen/resource/scripts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Queen/resource/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/Ovn1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/Ovn2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/Ovn3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/js/script1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/js/script3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/js/sript2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/avengers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/jumanji.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/jurassic.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/moives.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/sonic.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/startsida.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/Övningar/Ovn4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/Övningar/Ovn5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/Övningar/js/domtest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/Övningar/js/script4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Examples/Övningar/js/script5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Labration1/data/data.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Labration1/js/ajaxScript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Labration1/js/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Labration1/js/startScript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/Queen/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/Queen/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labration1/avengers.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/avengers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labration1/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labration1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labration1/jumanji.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/jumanji.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labration1/jurassic.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/jurassic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labration1/moives.html" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/Övningar/DOM ovn.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labration1/sonic.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/sonic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Labration1/startsida.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/startsida.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +30,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="tsconfig.json" />
       </list>
     </option>
   </component>
@@ -89,7 +89,9 @@
       <workItem from="1584692967460" duration="4357000" />
       <workItem from="1584954423279" duration="49000" />
       <workItem from="1584954492316" duration="13499000" />
-      <workItem from="1585130741836" duration="7465000" />
+      <workItem from="1585130741836" duration="11379000" />
+      <workItem from="1585214054002" duration="14243000" />
+      <workItem from="1585298027526" duration="3381000" />
     </task>
     <servers />
   </component>

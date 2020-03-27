@@ -1,0 +1,10 @@
+function hamburgerMenu() {
+    var x = document.getElementById("links");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+
+document.getElementById("username").textContent = localStorage.getItem("username");

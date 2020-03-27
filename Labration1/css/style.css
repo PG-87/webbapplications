@@ -1,4 +1,4 @@
-/* MOBILE SCREEN */
+/* MOBILE SCREEN MAX 767 */
 
 section {
     display: grid;
@@ -6,16 +6,15 @@ section {
     grid-template-rows: auto auto auto 50px;
     grid-template-areas: "header" "navigation" "main-content" "footer";
     grid-gap: 0;
-
 }
 
 header {
-    position: sticky;
+    /*position: sticky;*/
     grid-area: header;
     background-color: #7ee0c9;
     padding: 0;
     margin: 0;
-    height: 80px;
+    height: 100px;
     text-align: center;
     top: 0;
 }
@@ -29,6 +28,7 @@ nav {
     flex-direction: column;
     margin: 0;
     padding: 0;
+    font-family: Roboto, Arial, serif;
 }
 
 nav a {
@@ -40,6 +40,7 @@ nav a {
     text-space: 5;
     color: black;
     display: block;
+    font-size: 20px;
 }
 
 nav a:hover:not(.active) {
@@ -73,14 +74,17 @@ body {
 .main-container {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     margin: 0;
     padding: 0;
     grid-gap: 20px;
     background-color: #5A8CAD;
-
+    font-size: 15px;
+    font-family: Helvetica, Arial, serif;
 }
 
 .content-container {
+    justify-self: center;
     margin: 10px;
     padding: 10px;
 }
@@ -90,8 +94,9 @@ body {
 }
 
 img.moviepic {
-    height: 300px;
-    width: auto;
+    height: auto;
+    width: 400px;
+
 
 }
 
@@ -102,6 +107,7 @@ img.moviepic {
         width: 1240px;
         flex-direction: row;
         justify-self: center;
+        flex-wrap: nowrap;
     }
 
     nav {
@@ -112,8 +118,13 @@ img.moviepic {
         display: block;
     }
 
+    nav a {
+        font-size: 15px;
+    }
+
     nav #links {
         display: flex;
+
     }
 
     nav a.icon {
@@ -131,4 +142,31 @@ img.moviepic {
         width: auto;
     }
 
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    nav {
+        flex-direction: row;
+    }
+
+    nav #links {
+        display: flex;
+    }
+
+    nav a.icon {
+        display: none;
+    }
+
+    .main-container {
+        display: flex;
+        flex-direction: row;
+        justify-self: center;
+        flex-wrap: nowrap;
+    }
+
+    img.moviepic {
+        height: auto;
+        width: 500px;
+    }
 }

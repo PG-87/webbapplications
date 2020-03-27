@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Jurassic World</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <section class="grid-container">
@@ -12,21 +14,30 @@
     </header>
     <nav>
         <a href="index.html">Startsida</a>
-        <a href="sonic.html">Sonic: The Hedgehog</a>
-        <a href="jumanji.html">Jumanji: The next level</a>
-        <a href="avengers.html">Avengers: Endgame</a>
-        <a href="jurassic.html" class="active">Jurassic World</a>
+        <div id="links">
+            <a href="sonic.html">Sonic: The Hedgehog</a>
+            <a href="jumanji.html">Jumanji: The next level</a>
+            <a href="avengers.html">Avengers: Endgame</a>
+            <a href="jurassic.html" class="active">Jurassic World</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="hamburgerMenu()">
+            <i class="fa fa-bars"></i>
+        </a>
     </nav>
     <main class="main-container">
         <article class="content-container">
-            <img src="https://m.media-amazon.com/images/M/MV5BNzQ3OTY4NjAtNzM5OS00N2ZhLWJlOWUtYzYwZjNmOWRiMzcyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SY1000_CR0,0,631,1000_AL_.jpg" class="moviepic">
+            <img src="https://m.media-amazon.com/images/M/MV5BNzQ3OTY4NjAtNzM5OS00N2ZhLWJlOWUtYzYwZjNmOWRiMzcyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SY1000_CR0,0,631,1000_AL_.jpg"
+                 class="moviepic">
         </article>
         <article class="content-container">
-            Twenty-two years after the original Jurassic Park failed, the new park, also known as Jurassic World, is open for business.
-            After years of studying genetics, the scientists on the park genetically engineer a new breed of dinosaur, the Indominus Rex.
+            Twenty-two years after the original Jurassic Park failed, the new park, also known as Jurassic World, is
+            open for business.
+            After years of studying genetics, the scientists on the park genetically engineer a new breed of dinosaur,
+            the Indominus Rex.
             When everything goes horribly wrong, will our heroes make it off the island? Written by ahmetkozan
         </article>
     </main>
 </section>
+<script src="js/script.js"></script>
 </body>
 </html>

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Jumanji: The next level</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <section class="grid-container">
@@ -12,10 +14,15 @@
     </header>
     <nav>
         <a href="index.html">Startsida</a>
+        <div id="links">
         <a href="sonic.html">Sonic: The Hedgehog</a>
         <a href="jumanji.html" class="active">Jumanji: The next level</a>
         <a href="avengers.html">Avengers: Endgame</a>
         <a href="jurassic.html">Jurassic World</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="hamburgerMenu()">
+            <i class="fa fa-bars"></i>
+        </a>
     </nav>
     <main class="main-container">
         <article class="content-container">
@@ -27,5 +34,6 @@
         </article>
     </main>
 </section>
+<script src="js/script.js"></script>
 </body>
 </html>
