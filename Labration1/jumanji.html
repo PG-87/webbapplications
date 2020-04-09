@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/fetch.js" type="text/javascript"></script>
 </head>
 <body>
 <section class="grid-container">
@@ -27,6 +28,9 @@
     <main class="main-container">
         <article class="content-container">
             <img src="https://m.media-amazon.com/images/M/MV5BOTVjMmFiMDUtOWQ4My00YzhmLWE3MzEtODM1NDFjMWEwZTRkXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SY1000_CR0,0,674,1000_AL_.jpg" class="moviepic">
+            <div id="moviedata">
+                <script>getAllElementsFromJson("data/Jumanji.json", "moviedata"); </script>
+            </div>
         </article>
         <article class="content-container">
             The gang is back but the game has changed. As they return to Jumanji to rescue one of their own, they discover that nothing is as they expect.

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Övningar</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="name in names" v-text="name" v-bind:style="styleObject"></li>
+    </ul>
+    <input id="input" type="text" v-model="newName" @keyup.enter="addName">
+
+    <button v-if="newName.length > 0 && isNaN(newName)" @click="addName">Lägg till namn</button>
+
+    <p>Antal gånger: {{counter}} </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    var app = new Vue({
+
+        el: "#app",
+        data: {
+            newName: "",
+            names: ["Patrik", "Knut", "Lars-Beril"],
+            counter: 0,
+            styleObject: {
+                color: "red",
+                fontSize: "30px"
+            }
+        },
+        methods: {
+            addName(){
+                this.names.push(this.newName);
+                this.counter += 1;
+            }
+        },
+    })
+
+</script>
+</body>
+</html>

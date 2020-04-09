@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/fetch.js" type="text/javascript"></script>
 </head>
 <body>
 <section class="grid-container">
@@ -28,6 +29,9 @@
         <article class="content-container">
             <img src="https://m.media-amazon.com/images/M/MV5BNzQ3OTY4NjAtNzM5OS00N2ZhLWJlOWUtYzYwZjNmOWRiMzcyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SY1000_CR0,0,631,1000_AL_.jpg"
                  class="moviepic">
+            <div id="moviedata">
+                <script>getAllElementsFromJson("data/Jurassic.json", "moviedata"); </script>
+            </div>
         </article>
         <article class="content-container">
             Twenty-two years after the original Jurassic Park failed, the new park, also known as Jurassic World, is

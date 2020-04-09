@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - Introduktion</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <button v-on:click="dateMessage">Visa en hälsning!</button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hej!'
+            },
+            methods: {
+                dateMessage: function () {
+                    let today = new Date()
+                    let hourNow = today.getHours()
+                    if (hourNow > 18) {
+                        greeting = 'God kväll!'
+                    } else if (hourNow > 12) {
+                        greeting = 'God eftermiddag!'
+                    } else if (hourNow > 0) {
+                        greeting = 'God morgon!'
+                    } else {
+                        greeting = 'Välkommen!'
+                    }
+
+                    this.message = greeting
+                }
+            }
+        })
+    </script>
+</body>
+</html>

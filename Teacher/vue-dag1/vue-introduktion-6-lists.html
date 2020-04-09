@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - Introduktion</title>
+</head>
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="name in names" v-text="name"></li>
+        </ul>
+
+        <input id="input" type="text" v-model="newName">
+
+        <button v-if="newName.length > 0" v-on:click="addName">Lägg till ett namn</button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#root',
+            data: {
+                newName: '',
+                names: ['Jerry', 'Lisa', 'Kalle']
+            },
+
+            methods: {
+                addName(){
+                    this.names.push(this.newName)
+                }
+            }
+        })
+
+        /*
+        Tutorial:
+        https://laracasts.com/series/learn-vue-2-step-by-step/episodes/3
+        https://laracasts.com/series/learn-vue-2-step-by-step/episodes/4
+         */
+    </script>
+</body>
+</html>

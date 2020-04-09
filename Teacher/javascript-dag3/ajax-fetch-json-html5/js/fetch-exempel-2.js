@@ -7,8 +7,7 @@ function append(parent, el) {
 }
 
 const ul = document.getElementById('todos');
-const url = 'data/data.json';
-fetch(url)
+fetch('data/data.json')
     .then((resp) => resp.json())
     .then(function(data) {
         console.log(data.todos);

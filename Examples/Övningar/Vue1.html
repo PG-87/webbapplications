@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Övning med Vue</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+<p class="ovnText">Övning för att vända på text med en knapp samt en if sats som visar hälsningsfras beroende på klockslag!</p>
+<div id="ovn1">
+    <p v-text="message"></p>
+    <button v-on:click="reverseMessage">Reverse message</button>
+    <button v-on:click="dateMessage">Hälsning beroende på klockan!</button>
+    <p v-text="date"></p>
+</div>
+
+
+<p class="ovnText">Nedan är övning med Computed funktion. Det vill säga en funktion som laddar direkt när sidan laddas och inget event.</p>
+<div id="ovn2">
+    <p>Orginal message: "{{message2}}"</p>
+    <input v-model="message2">
+    <p>Computed message: "{{reversedMessage2}}"</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--Script för övning 1 -->
+<script>
+    var app = new Vue({
+        el: "#ovn1",
+        data: {
+            message: "Patrik Gustafsson"
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split("").reverse().join("")
+
+            },
+            dateMessage: function () {
+                let today = new Date();
+                let hourNow = today.getHours();
+                if (hourNow > 18) {
+                    greeting = "God kväll!"
+                } else if (hourNow > 12) {
+                    greeting = "God eftermiddag!"
+                } else if (hourNow > 0) {
+                    greeting = "God morgon!"
+                } else {
+                    greeting = "Välkommen!"
+                }
+                this.message = greeting
+            }
+        },
+
+    })
+
+</script>
+
+<!--Script för övning 2 -->
+<script>
+    var app2 = new Vue({
+
+        el: "#ovn2",
+        data: {
+            message2: "Roflcopter"
+        },
+        computed: {
+            reversedMessage2: function () {
+                return this.message2.split("").reverse().join("");
+
+            }
+        }
+
+    })
+
+</script>
+</body>
+</html>
