@@ -2,34 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae2c8d08-7b72-47b5-8252-60df0df10d1f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/Vue1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/Vue2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/VueProps.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/VueTodo.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/ajaxScript.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/js/vue1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/js/vueTodo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/data/Avengers.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/data/Jumanji.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/data/Jurassic.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/data/Sonic.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration1/js/fetch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WebstormProjects.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WebstormProjects.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/avengers.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/avengers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/data/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/js/ajaxScript.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/js/startScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/js/startScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/jumanji.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/jumanji.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/jurassic.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/jurassic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/sonic.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/sonic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Labration1/startsida.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration1/startsida.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Teacher/javascript-dag3/ajax-fetch-json-html5/js/fetch-exempel-2.js" beforeDir="false" afterPath="$PROJECT_DIR$/Teacher/javascript-dag3/ajax-fetch-json-html5/js/fetch-exempel-2.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +103,8 @@
       <workItem from="1585899665103" duration="5124000" />
       <workItem from="1586250211681" duration="600000" />
       <workItem from="1586332430012" duration="7609000" />
-      <workItem from="1586423495688" duration="1980000" />
+      <workItem from="1586423495688" duration="2742000" />
+      <workItem from="1586852860854" duration="273000" />
     </task>
     <servers />
   </component>
