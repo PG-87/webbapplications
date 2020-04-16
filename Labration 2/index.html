@@ -44,7 +44,7 @@
                                     v-bind:name="points.name"
                                     v-bind:points="points.points"
                                     v-bind:claimed="points.claimed"
-                                    v-on:claim="points.claimed = true"
+                                    v-on:claim="countpoints(points)"
                             ></points>
                         </tr>
                         <tr>
@@ -82,7 +82,7 @@
         },
         template: '\
             <tr>\
-            <td>{{name}}</td><td></td>Points: {{points}}<td><button v-on:click="$emit(\'claim\')">Claim</button></td>\
+            <td>{{name}}</td><td></td>Points: {{points}}<td><button v-on:click="$emit(\'claim\')" v-if="this.claimed = true">Claim</button></td>\
             </tr>\
             '
     });
@@ -117,8 +117,18 @@
                         }
                     });
                 this.rerolls++;
+            },
+            countpoints: function(id) {
+                id.claimed = true;
+                var count = 0;
+                this.dices.forEach(function (dice) {
+                    if (id.id === dice.value){
+                        count += dice.value
+                    }
+                });
+                this.topscore[id.id-1].points = count;
             }
-            }
+        }
     });
 </script>
 </body>

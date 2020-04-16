@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae2c8d08-7b72-47b5-8252-60df0df10d1f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Examples/Övningar/VueDice.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration 2/css/dice.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration 2/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Labration 2/js/vue.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Labration 2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Labration 2/index.html" afterDir="false" />
     </list>
@@ -111,7 +107,7 @@
       <workItem from="1586423495688" duration="2742000" />
       <workItem from="1586852860854" duration="8347000" />
       <workItem from="1586937348717" duration="16497000" />
-      <workItem from="1587023996142" duration="14320000" />
+      <workItem from="1587023996142" duration="17678000" />
     </task>
     <servers />
   </component>
