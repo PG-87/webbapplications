@@ -2,9 +2,124 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>PG Yatzy</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/dice.css">
 </head>
 <body>
+<div id="app">
+    <section class="main">
 
+        <div class="game-container">
+            <div class="dice-and-highscore">
+                <div>
+                    <yatzy-dice
+                            v-for="dice in dices"
+                            v-bind:key="dice.id"
+                            v-bind:value="dice.value"
+                            v-bind:name="dice.name"
+                            v-bind:is-selected="dice.isSelected"
+                            v-on:select="dice.isSelected = !dice.isSelected"
+                            v-bind:class="{dice_border: dice.isSelected}"
+                    ></yatzy-dice>
+                    <br>
+                    <button v-on:click="reroll" v-if="this.rerolls < 3">Roll the dice</button>
+                    <p>Du har kastat: {{rerolls}}</p>
+                </div>
+
+                <div>Highscore</div>
+            </div>
+            <div class="scoreboard">
+                <div class="topscore">
+                    <table style="width:100%">
+                        <tr>
+                            <th>Upper section</th>
+                            <th>How to score</th>
+                            <th>Points</th>
+                        </tr>
+                        <tr>
+                            <points
+                                    v-for="points in topscore"
+                                    v-bind:key="points.id"
+                                    v-bind:name="points.name"
+                                    v-bind:points="points.points"
+                                    v-bind:claimed="points.claimed"
+                                    v-on:claim="points.claimed = true"
+                            ></points>
+                        </tr>
+                        <tr>
+                            <th>Lower section</th>
+                            <th>How to score</th>
+                            <th>Points</th>
+                        </tr>
+                    </table>
+                </div>
+                <!--<div class="bottomscore">Bottomscore</div>-->
+                <div class="totalscore">Totalscore</div>
+            </div>
+        </div>
+
+    </section>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    Vue.component('yatzy-dice', {
+        props: {
+            name: String,
+            value: Number,
+            isSelected: Boolean
+        },
+        template: '\
+        <button :class="`dice_${this.value}`" v-on:click="$emit(\'select\')"></button>'
+    });
+
+    Vue.component('points', {
+        props: {
+            name: String,
+            points: Number,
+            claimed: Boolean
+        },
+        template: '\
+            <tr>\
+            <td>{{name}}</td><td></td>Points: {{points}}<td><button v-on:click="$emit(\'claim\')">Claim</button></td>\
+            </tr>\
+            '
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            dices: [
+                {id: 1, value: Math.floor(Math.random() * 6) + 1, name: 'one', isSelected: false},
+                {id: 2, value: Math.floor(Math.random() * 6) + 1, name: 'two', isSelected: false},
+                {id: 3, value: Math.floor(Math.random() * 6) + 1, name: 'three', isSelected: false},
+                {id: 4, value: Math.floor(Math.random() * 6) + 1, name: 'four', isSelected: false},
+                {id: 5, value: Math.floor(Math.random() * 6) + 1, name: 'five', isSelected: false}
+            ],
+            topscore: [
+                {id: 1, points: 0, name: 'Ones', claimed: false},
+                {id: 2, points: 0, name: 'Twos', claimed: false},
+                {id: 3, points: 0, name: 'Threes', claimed: false},
+                {id: 4, points: 0, name: 'Fours', claimed: false},
+                {id: 5, points: 0, name: 'Fives', claimed: false},
+                {id: 6, points: 0, name: 'Sixes', claimed: false}
+            ],
+            rerolls: 0,
+            totalscore: 0
+        },
+        methods: {
+            reroll: function () {
+                if (this.rerolls < 3)
+                    this.dices.forEach(function (entry) {
+                        if (!entry.isSelected) {
+                            entry.value = Math.floor(Math.random() * 6) + 1;
+                        }
+                    });
+                this.rerolls++;
+            }
+            }
+    });
+</script>
 </body>
 </html>
