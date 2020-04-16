@@ -82,7 +82,7 @@
         },
         template: '\
             <tr>\
-            <td>{{name}}</td><td></td>Points: {{points}}<td><button v-on:click="$emit(\'claim\')" v-if="this.claimed = true">Claim</button></td>\
+            <td>{{name}}</td><td></td>Points: {{points}}<td><button v-on:click="$emit(\'claim\')" v-if="this.claimed == false">Claim</button></td>\
             </tr>\
             '
     });
