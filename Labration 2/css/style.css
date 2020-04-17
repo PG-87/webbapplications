@@ -47,6 +47,25 @@ section {
     height: 200px;
     width: content-box;
 }
+
+.section-title {
+    font-weight: bold;
+}
+
+.claim_button {
+    background-color: dodgerblue;
+    width: 70px;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11px;
+    margin: 0px;
+    cursor: pointer;
+}
+
 /* Desktop */
 @media screen and (min-width: 1025px) {
 

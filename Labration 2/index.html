@@ -23,8 +23,8 @@
                             v-bind:class="{dice_border: dice.isSelected}"
                     ></yatzy-dice>
                     <br>
-                    <button v-on:click="reroll" v-if="this.rerolls < 3">Roll the dice</button>
-                    <p>Du har kastat: {{rerolls}}</p>
+                    <button id="reroll_button" v-on:click="reroll" v-if="this.rerolls < 3">Roll the dice</button>
+                    <p>Du har kastat: {{rerolls}} gånger</p>
                 </div>
 
                 <div>Highscore</div>
@@ -32,29 +32,38 @@
             <div class="scoreboard">
                 <div class="topscore">
                     <table style="width:100%">
+                        <caption>YATZY!</caption>
+                        <thead>
                         <tr>
-                            <th>Upper section</th>
-                            <th>How to score</th>
-                            <th>Points</th>
+                            <td class="section-title" width="20%">Upper section</td>
+                            <td class="section-title" width="60%">How to score</td>
+                            <td class="section-title" width="20%">Points</td>
                         </tr>
-                        <tr>
-                            <points
-                                    v-for="points in topscore"
-                                    v-bind:key="points.id"
-                                    v-bind:name="points.name"
-                                    v-bind:points="points.points"
-                                    v-bind:claimed="points.claimed"
-                                    v-on:claim="countpoints(points)"
-                            ></points>
-                        </tr>
-                        <tr>
-                            <th>Lower section</th>
-                            <th>How to score</th>
-                            <th>Points</th>
-                        </tr>
+                        </thead>
+                        <tbody class="points-section">
+                        <tr
+                                is="points"
+                                v-for="points in topscore"
+                                v-bind:key="points.id"
+                                v-bind:name="points.name"
+                                v-bind:points="points.points"
+                                v-bind:claimed="points.claimed"
+                                v-on:claim="countpoints(points)"
+                        ></tr>
+                        </tbody>
                     </table>
                 </div>
-                <!--<div class="bottomscore">Bottomscore</div>-->
+                <div class="bottomscore">
+                    <table style="width: 100%">
+                        <thead>
+                        <tr>
+                            <td class="section-title" width="20%">Lower section</td>
+                            <td class="section-title" width="60%">How to score</td>
+                            <td class="section-title" width="20%">Points</td>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
                 <div class="totalscore">Totalscore</div>
             </div>
         </div>
@@ -82,12 +91,12 @@
         },
         template: '\
             <tr>\
-            <td>{{name}}</td><td></td>Points: {{points}}<td><button v-on:click="$emit(\'claim\')" v-if="this.claimed == false">Claim</button></td>\
+            <td width="20%"><button :class="`claim_button`" v-on:click="$emit(\'claim\')" v-if="this.claimed == false">{{name}}</button></td><td width="60%">Points: {{points}}</td><td width="20%"></td>\
             </tr>\
             '
     });
 
-    new Vue({
+    var vm = new Vue({
         el: '#app',
         data: {
             dices: [
@@ -103,7 +112,8 @@
                 {id: 3, points: 0, name: 'Threes', claimed: false},
                 {id: 4, points: 0, name: 'Fours', claimed: false},
                 {id: 5, points: 0, name: 'Fives', claimed: false},
-                {id: 6, points: 0, name: 'Sixes', claimed: false}
+                {id: 6, points: 0, name: 'Sixes', claimed: false},
+                {id: 7, points: 0, name: 'FullHouse', claimed: false}
             ],
             rerolls: 0,
             totalscore: 0
@@ -118,15 +128,111 @@
                     });
                 this.rerolls++;
             },
-            countpoints: function(id) {
+            countpoints: function (id) {
                 id.claimed = true;
-                var count = 0;
+                let count = 0;
+
+                switch (id.name) {
+                    case "Ones":
+                        vm.scoreOneOfAKind(id);
+                        break;
+                    case "Twos":
+                         vm.scoreOneOfAKind(id);
+                        break;
+                    case "Threes":
+                        vm.scoreOneOfAKind(id);
+                        break;
+                    case "Fours":
+                        vm.scoreOneOfAKind(id);
+                        break;
+                    case "Fives":
+                        vm.scoreOneOfAKind(id);
+                        break;
+                    case "Sixes":
+                        vm.scoreOneOfAKind(id);
+                        break;
+                    case "FullHouse":
+                        vm.scoreFullHouse(id);
+                        break;
+                    default:
+                        return;
+
+                }
+                vm.newRound();
+
+            },
+            newRound: function () {
+                alert("NEW ROUND!");
+                vm.rerolls = 0;
+                this.dices.forEach(function (entry) {
+                    entry.value = Math.floor(Math.random() * 6) + 1;
+                    entry.isSelected = false;
+                })
+            },
+            scoreOneOfAKind(id) {
+                let score = 0;
                 this.dices.forEach(function (dice) {
-                    if (id.id === dice.value){
-                        count += dice.value
+                    if (id.id === dice.value) {
+                        score += dice.value
+                    } vm.topscore[id.id - 1].points = score;
+                })
+            },
+
+            scoreXOfAKind (id, limit) {
+                var dice_check = this.buildDiceMap()
+                for (var value of dice_check.dice_map_values) {
+                    if (value >= limit) {
+                        id.value = dice_check.dice_total
+                        this.scorecard.lower_total += dice_check.dice_total
                     }
-                });
-                this.topscore[id.id-1].points = count;
+                }
+            },
+
+            scoreFullHouse(id) {
+                var dice_check = this.buildDiceMap();
+                var has_2 = false;
+                var has_3 = false;
+                for (var value of dice_check.dice_map_values) {
+                    if (value === 2) {
+                        has_2 = true
+                    }
+                    if (value === 3) {
+                        has_3 = true
+                    }
+                }
+                if (has_2 && has_3) {
+                    vm.topscore[id.id - 1].points = 25;
+                } else {
+                    vm.topscore[id.id - 1].points = 0;
+                }
+            },
+
+            buildDiceCheckArray() {
+                var dice_check = []
+                for (var dice of this.dices) {
+                    if (!dice_check.includes(dice.value)) {
+                        dice_check.push(dice.value)
+                    }
+                }
+                return dice_check.sort()
+            },
+
+            buildDiceMap: function () {
+                var dice_map = new Map();
+                dice_map.set(1, 0);
+                dice_map.set(2, 0);
+                dice_map.set(3, 0);
+                dice_map.set(4, 0);
+                dice_map.set(5, 0);
+                dice_map.set(6, 0);
+
+                var dice_total = 0;
+
+                for (var dice of this.dices) {
+                    dice_total += dice.value
+                    dice_map.set(dice.value, dice_map.get(dice.value) + 1)
+                }
+                return {dice_total: dice_total, dice_map_values: dice_map.values()}
             }
         }
     });
