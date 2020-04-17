@@ -113,7 +113,9 @@
                 {id: 4, points: 0, name: 'Fours', claimed: false},
                 {id: 5, points: 0, name: 'Fives', claimed: false},
                 {id: 6, points: 0, name: 'Sixes', claimed: false},
-                {id: 7, points: 0, name: 'FullHouse', claimed: false}
+                {id: 7, points: 0, name: 'ThreeOfAKind', claimed: false},
+                {id: 8, points: 0, name: 'FourOfAKind', claimed: false},
+                {id: 9, points: 0, name: 'FullHouse', claimed: false}
             ],
             rerolls: 0,
             totalscore: 0
@@ -137,7 +139,7 @@
                         vm.scoreOneOfAKind(id);
                         break;
                     case "Twos":
-                         vm.scoreOneOfAKind(id);
+                        vm.scoreOneOfAKind(id);
                         break;
                     case "Threes":
                         vm.scoreOneOfAKind(id);
@@ -150,6 +152,12 @@
                         break;
                     case "Sixes":
                         vm.scoreOneOfAKind(id);
+                        break;
+                    case "ThreeOfAKind":
+                        vm.scoreXOfAKind(id, 3);
+                        break;
+                    case "FourOfAKind":
+                        vm.scoreXOfAKind(id, 4);
                         break;
                     case "FullHouse":
                         vm.scoreFullHouse(id);
@@ -174,24 +182,25 @@
                 this.dices.forEach(function (dice) {
                     if (id.id === dice.value) {
                         score += dice.value
-                    } vm.topscore[id.id - 1].points = score;
+                    }
+                    vm.topscore[id.id - 1].points = score;
                 })
             },
 
-            scoreXOfAKind (id, limit) {
-                var dice_check = this.buildDiceMap()
-                for (var value of dice_check.dice_map_values) {
+            scoreXOfAKind(id, limit) {
+                let dice_check = this.buildDiceMap();
+                for (let value of dice_check.dice_map_values) {
                     if (value >= limit) {
                         id.value = dice_check.dice_total
-                        this.scorecard.lower_total += dice_check.dice_total
+                        this.topscore[id.id -1].points += dice_check.dice_total
                     }
                 }
             },
 
             scoreFullHouse(id) {
-                var dice_check = this.buildDiceMap();
-                var has_2 = false;
-                var has_3 = false;
+                let dice_check = this.buildDiceMap();
+                let has_2 = false;
+                let has_3 = false;
                 for (var value of dice_check.dice_map_values) {
                     if (value === 2) {
                         has_2 = true
@@ -208,7 +217,7 @@
             },
 
             buildDiceCheckArray() {
-                var dice_check = []
+                let dice_check = []
                 for (var dice of this.dices) {
                     if (!dice_check.includes(dice.value)) {
                         dice_check.push(dice.value)
@@ -218,7 +227,7 @@
             },
 
             buildDiceMap: function () {
-                var dice_map = new Map();
+                let dice_map = new Map();
                 dice_map.set(1, 0);
                 dice_map.set(2, 0);
                 dice_map.set(3, 0);
@@ -226,9 +235,9 @@
                 dice_map.set(5, 0);
                 dice_map.set(6, 0);
 
-                var dice_total = 0;
+                let dice_total = 0;
 
-                for (var dice of this.dices) {
+                for (let dice of this.dices) {
                     dice_total += dice.value
                     dice_map.set(dice.value, dice_map.get(dice.value) + 1)
                 }
