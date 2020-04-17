@@ -38,18 +38,32 @@ section {
      width: 66%;
      display: flex;
      flex-direction: column;
+     flex-wrap: wrap;
      margin: 10px;
  }
 
 .scoreboard div {
+    flex-wrap: wrap;
     margin: 15px;
     background-color: white;
-    height: 200px;
+    height: 400px;
     width: content-box;
 }
 
 .section-title {
     font-weight: bold;
+}
+
+table {
+    height: 10px;
+
+}
+
+.bottomscore {
+    display: none;
+}
+.totalscore {
+    display: none;
 }
 
 .claim_button {

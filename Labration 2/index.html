@@ -31,7 +31,7 @@
             </div>
             <div class="scoreboard">
                 <div class="topscore">
-                    <table style="width:100%">
+                    <table class="scoreboard-section" style="width:100%">
                         <caption>YATZY!</caption>
                         <thead>
                         <tr>
@@ -115,7 +115,10 @@
                 {id: 6, points: 0, name: 'Sixes', claimed: false},
                 {id: 7, points: 0, name: 'ThreeOfAKind', claimed: false},
                 {id: 8, points: 0, name: 'FourOfAKind', claimed: false},
-                {id: 9, points: 0, name: 'FullHouse', claimed: false}
+                {id: 9, points: 0, name: 'FullHouse', claimed: false},
+                {id: 10, points: 0, name: 'SmallStraight', claimed: false},
+                {id: 11, points: 0, name: 'BigStraight', claimed: false},
+                {id: 12, points: 0, name: 'Yatzy', claimed: false}
             ],
             rerolls: 0,
             totalscore: 0
@@ -128,7 +131,7 @@
                             entry.value = Math.floor(Math.random() * 6) + 1;
                         }
                     });
-                this.rerolls++;
+                <!-- this.rerolls++; -->
             },
             countpoints: function (id) {
                 id.claimed = true;
@@ -162,6 +165,11 @@
                     case "FullHouse":
                         vm.scoreFullHouse(id);
                         break;
+                    case "SmallStraight":
+                        vm.scoreSmallStraight(id);
+                        break;
+                    case "BigStraight":
+                        break;
                     default:
                         return;
 
@@ -192,7 +200,7 @@
                 for (let value of dice_check.dice_map_values) {
                     if (value >= limit) {
                         id.value = dice_check.dice_total
-                        this.topscore[id.id -1].points += dice_check.dice_total
+                        this.topscore[id.id - 1].points += dice_check.dice_total
                     }
                 }
             },
@@ -216,13 +224,64 @@
                 }
             },
 
-            buildDiceCheckArray() {
-                let dice_check = []
-                for (var dice of this.dices) {
-                    if (!dice_check.includes(dice.value)) {
-                        dice_check.push(dice.value)
+            scoreSmallStraight(id) {
+                var dice_check = this.buildDiceArray();
+                if (dice_check.length >= 4) {
+                    dice_check = dice_check.slice(0, 4);
+                    if (dice_check === [1, 2, 3, 4] ||
+                        dice_check === [2, 3, 4, 5] ||
+                        dice_check === [3, 4, 5, 6]) {
+                        alert("ARRAY MATCH");
+                        id.score = 30;
+                        vm.topscore[id.id - 1].points += 30
                     }
                 }
+            },
+
+            scoreLargeStraight(line) {
+                var dice_check = this.buildDiceArray()
+                if (dice_check.length === 5) {
+                    if (
+                        this.$_.isEqual(dice_check, [1, 2, 3, 4, 5]) ||
+                        this.$_.isEqual(dice_check, [2, 3, 4, 5, 6])) {
+                        line.score = 40
+                        this.scorecard.lower_total += 40
+                    }
+                }
+            },
+
+            scoreVuezee(line) {
+                var dice_check = this.buildDiceArray()
+                if (dice_check.length === 1) {
+                    // It's possible to score another vuezee for a bonus of 100.
+                    if (line.scored && line.score !== 0) {
+                        line.score += 100
+                        this.scorecard.lower_total += 100
+                    }
+                    if (!line.scored) {
+                        line.score = 50
+                        this.scorecard.lower_total += 50
+                    }
+                }
+            },
+
+            scoreChance(line) {
+                for (var dice of this.all_dice) {
+                    line.score += dice.value
+                }
+                this.scorecard.lower_total += line.score
+            },
+
+            buildDiceArray() {
+                alert("ARRAY BUILDER");
+                let dice_check = [];
+                for (var dice of this.dices) {
+                    if (!dice_check.includes(dice.value)) {
+                        dice_check.push(dice.value);
+                        alert(dice_check);
+                    }
+                }
+
                 return dice_check.sort()
             },
 
