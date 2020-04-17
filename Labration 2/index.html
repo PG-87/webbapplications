@@ -43,7 +43,7 @@
                         <tbody class="points-section">
                         <tr
                                 is="points"
-                                v-for="points in topscore"
+                                v-for="points in scoreboard"
                                 v-bind:key="points.id"
                                 v-bind:name="points.name"
                                 v-bind:points="points.points"
@@ -64,7 +64,7 @@
                         </thead>
                     </table>
                 </div>
-                <div class="totalscore">Totalscore</div>
+                <div class="totalscore">Totalscore: {{totalscore}}</div>
             </div>
         </div>
 
@@ -97,213 +97,236 @@
     });
 
     var vm = new Vue({
-        el: '#app',
-        data: {
-            dices: [
-                {id: 1, value: Math.floor(Math.random() * 6) + 1, name: 'one', isSelected: false},
-                {id: 2, value: Math.floor(Math.random() * 6) + 1, name: 'two', isSelected: false},
-                {id: 3, value: Math.floor(Math.random() * 6) + 1, name: 'three', isSelected: false},
-                {id: 4, value: Math.floor(Math.random() * 6) + 1, name: 'four', isSelected: false},
-                {id: 5, value: Math.floor(Math.random() * 6) + 1, name: 'five', isSelected: false}
-            ],
-            topscore: [
-                {id: 1, points: 0, name: 'Ones', claimed: false},
-                {id: 2, points: 0, name: 'Twos', claimed: false},
-                {id: 3, points: 0, name: 'Threes', claimed: false},
-                {id: 4, points: 0, name: 'Fours', claimed: false},
-                {id: 5, points: 0, name: 'Fives', claimed: false},
-                {id: 6, points: 0, name: 'Sixes', claimed: false},
-                {id: 7, points: 0, name: 'ThreeOfAKind', claimed: false},
-                {id: 8, points: 0, name: 'FourOfAKind', claimed: false},
-                {id: 9, points: 0, name: 'FullHouse', claimed: false},
-                {id: 10, points: 0, name: 'SmallStraight', claimed: false},
-                {id: 11, points: 0, name: 'BigStraight', claimed: false},
-                {id: 12, points: 0, name: 'Yatzy', claimed: false}
-            ],
-            rerolls: 0,
-            totalscore: 0
-        },
-        methods: {
-            reroll: function () {
-                if (this.rerolls < 3)
+            el: '#app',
+            data: {
+                dices: [
+                    {id: 1, value: Math.floor(Math.random() * 6) + 1, name: 'one', isSelected: false},
+                    {id: 2, value: Math.floor(Math.random() * 6) + 1, name: 'two', isSelected: false},
+                    {id: 3, value: Math.floor(Math.random() * 6) + 1, name: 'three', isSelected: false},
+                    {id: 4, value: Math.floor(Math.random() * 6) + 1, name: 'four', isSelected: false},
+                    {id: 5, value: Math.floor(Math.random() * 6) + 1, name: 'five', isSelected: false}
+                ],
+                scoreboard: [
+                    {id: 1, points: 0, name: 'Ones', claimed: false},
+                    {id: 2, points: 0, name: 'Twos', claimed: false},
+                    {id: 3, points: 0, name: 'Threes', claimed: false},
+                    {id: 4, points: 0, name: 'Fours', claimed: false},
+                    {id: 5, points: 0, name: 'Fives', claimed: false},
+                    {id: 6, points: 0, name: 'Sixes', claimed: false},
+                    {id: 7, points: 0, name: 'ThreeOfAKind', claimed: false},
+                    {id: 8, points: 0, name: 'FourOfAKind', claimed: false},
+                    {id: 9, points: 0, name: 'FullHouse', claimed: false},
+                    {id: 10, points: 0, name: 'SmallStraight', claimed: false},
+                    {id: 11, points: 0, name: 'BigStraight', claimed: false},
+                    {id: 12, points: 0, name: 'Chance', claimed: false},
+                    {id: 13, points: 0, name: 'Yatzy', claimed: false}
+                ],
+                bonusClaimed: false,
+                rerolls: 0,
+                totalscore: 0
+            },
+            methods: {
+                reroll: function () {
+                    if (this.rerolls < 3)
+                        this.dices.forEach(function (entry) {
+                            if (!entry.isSelected) {
+                                entry.value = Math.floor(Math.random() * 6) + 1;
+                            }
+                        });
+                    <!-- this.rerolls++; -->
+                },
+                countpoints: function (id) {
+                    id.claimed = true;
+                    let count = 0;
+
+                    switch (id.name) {
+                        case "Ones":
+                            vm.scoreOneOfAKind(id);
+                            break;
+                        case "Twos":
+                            vm.scoreOneOfAKind(id);
+                            break;
+                        case "Threes":
+                            vm.scoreOneOfAKind(id);
+                            break;
+                        case "Fours":
+                            vm.scoreOneOfAKind(id);
+                            break;
+                        case "Fives":
+                            vm.scoreOneOfAKind(id);
+                            break;
+                        case "Sixes":
+                            vm.scoreOneOfAKind(id);
+                            break;
+                        case "ThreeOfAKind":
+                            vm.scoreXOfAKind(id, 3);
+                            break;
+                        case "FourOfAKind":
+                            vm.scoreXOfAKind(id, 4);
+                            break;
+                        case "FullHouse":
+                            vm.scoreFullHouse(id);
+                            break;
+                        case "SmallStraight":
+                            vm.scoreSmallStraight(id);
+                            break;
+                        case "BigStraight":
+                            vm.scoreLargeStraight(id);
+                            break;
+                        case "Chance":
+                            vm.scoreChance(id);
+                            break;
+                        case "Yatzy":
+                            vm.scoreYatzy(id);
+                            break;
+                        default:
+                            return;
+
+                    }
+                    vm.newRound();
+
+                },
+                newRound: function () {
+                    vm.rerolls = 0;
                     this.dices.forEach(function (entry) {
-                        if (!entry.isSelected) {
-                            entry.value = Math.floor(Math.random() * 6) + 1;
+                        entry.value = Math.floor(Math.random() * 6) + 1;
+                        entry.isSelected = false;
+                    });
+                    if (vm.bonusClaimed === false) {
+                        vm.calcBonus();
+                    }
+                },
+
+                calcBonus: function () {
+                    let bonus = 0;
+                    this.scoreboard.forEach(function (id) {
+                        if (id.id <= 6) {
+                            bonus += id.points;
                         }
                     });
-                <!-- this.rerolls++; -->
-            },
-            countpoints: function (id) {
-                id.claimed = true;
-                let count = 0;
-
-                switch (id.name) {
-                    case "Ones":
-                        vm.scoreOneOfAKind(id);
-                        break;
-                    case "Twos":
-                        vm.scoreOneOfAKind(id);
-                        break;
-                    case "Threes":
-                        vm.scoreOneOfAKind(id);
-                        break;
-                    case "Fours":
-                        vm.scoreOneOfAKind(id);
-                        break;
-                    case "Fives":
-                        vm.scoreOneOfAKind(id);
-                        break;
-                    case "Sixes":
-                        vm.scoreOneOfAKind(id);
-                        break;
-                    case "ThreeOfAKind":
-                        vm.scoreXOfAKind(id, 3);
-                        break;
-                    case "FourOfAKind":
-                        vm.scoreXOfAKind(id, 4);
-                        break;
-                    case "FullHouse":
-                        vm.scoreFullHouse(id);
-                        break;
-                    case "SmallStraight":
-                        vm.scoreSmallStraight(id);
-                        break;
-                    case "BigStraight":
-                        break;
-                    default:
-                        return;
-
-                }
-                vm.newRound();
-
-            },
-            newRound: function () {
-                alert("NEW ROUND!");
-                vm.rerolls = 0;
-                this.dices.forEach(function (entry) {
-                    entry.value = Math.floor(Math.random() * 6) + 1;
-                    entry.isSelected = false;
-                })
-            },
-            scoreOneOfAKind(id) {
-                let score = 0;
-                this.dices.forEach(function (dice) {
-                    if (id.id === dice.value) {
-                        score += dice.value
+                    if (bonus >= 63) {
+                        vm.totalscore += 50;
+                        vm.bonusClaimed = true;
                     }
-                    vm.topscore[id.id - 1].points = score;
-                })
-            },
 
-            scoreXOfAKind(id, limit) {
-                let dice_check = this.buildDiceMap();
-                for (let value of dice_check.dice_map_values) {
-                    if (value >= limit) {
-                        id.value = dice_check.dice_total
-                        this.topscore[id.id - 1].points += dice_check.dice_total
+                },
+
+                scoreOneOfAKind(id) {
+                    let score = 0;
+                    this.dices.forEach(function (dice) {
+                        if (id.id === dice.value) {
+                            score += dice.value
+                        }
+                        vm.scoreboard[id.id - 1].points = score;
+                        vm.totalscore += score;
+                    })
+                },
+
+                scoreXOfAKind(id, limit) {
+                    let dice_check = this.buildDiceMap();
+                    for (let value of dice_check.dice_map_values) {
+                        if (value >= limit) {
+                            id.value = dice_check.dice_total
+                            this.scoreboard[id.id - 1].points += dice_check.dice_total;
+                            vm.totalscore += dice_check.dice_total;
+                        }
                     }
-                }
-            },
+                },
 
-            scoreFullHouse(id) {
-                let dice_check = this.buildDiceMap();
-                let has_2 = false;
-                let has_3 = false;
-                for (var value of dice_check.dice_map_values) {
-                    if (value === 2) {
-                        has_2 = true
+                scoreFullHouse(id) {
+                    let dice_check = this.buildDiceMap();
+                    let has_2 = false;
+                    let has_3 = false;
+                    for (var value of dice_check.dice_map_values) {
+                        if (value === 2) {
+                            has_2 = true
+                        }
+                        if (value === 3) {
+                            has_3 = true
+                        }
                     }
-                    if (value === 3) {
-                        has_3 = true
+                    if (has_2 && has_3) {
+                        vm.scoreboard[id.id - 1].points = 25;
+                        vm.totalscore += 25;
+                    } else {
+                        vm.scoreboard[id.id - 1].points = 0;
                     }
-                }
-                if (has_2 && has_3) {
-                    vm.topscore[id.id - 1].points = 25;
-                } else {
-                    vm.topscore[id.id - 1].points = 0;
-                }
-            },
+                },
 
-            scoreSmallStraight(id) {
-                var dice_check = this.buildDiceArray();
-                if (dice_check.length >= 4) {
-                    dice_check = dice_check.slice(0, 4);
-                    if (dice_check === [1, 2, 3, 4] ||
-                        dice_check === [2, 3, 4, 5] ||
-                        dice_check === [3, 4, 5, 6]) {
-                        alert("ARRAY MATCH");
-                        id.score = 30;
-                        vm.topscore[id.id - 1].points += 30
+                scoreSmallStraight(id) {
+                    let dice_check = this.buildDiceArray();
+                    if (dice_check.length >= 4) {
+                        dice_check = dice_check.slice(0, 4);
+                        if (JSON.stringify(dice_check) === JSON.stringify([1, 2, 3, 4]) ||
+                            JSON.stringify(dice_check) === JSON.stringify([2, 3, 4, 5]) ||
+                            JSON.stringify(dice_check) === JSON.stringify([3, 4, 5, 6])) {
+                            id.score = 30;
+                            vm.scoreboard[id.id - 1].points += 30;
+                            vm.totalscore += 30;
+                        }
                     }
-                }
-            },
+                },
 
-            scoreLargeStraight(line) {
-                var dice_check = this.buildDiceArray()
-                if (dice_check.length === 5) {
-                    if (
-                        this.$_.isEqual(dice_check, [1, 2, 3, 4, 5]) ||
-                        this.$_.isEqual(dice_check, [2, 3, 4, 5, 6])) {
-                        line.score = 40
-                        this.scorecard.lower_total += 40
+                scoreLargeStraight(id) {
+                    let dice_check = this.buildDiceArray();
+                    if (dice_check.length === 5) {
+                        if (
+                            JSON.stringify(dice_check) === JSON.stringify([1, 2, 3, 4, 5]) ||
+                            JSON.stringify(dice_check) === JSON.stringify([2, 3, 4, 5, 6])) {
+                            vm.scoreboard[id.id - 1].points += 40;
+                            vm.totalscore += 40;
+                        }
                     }
-                }
-            },
+                },
 
-            scoreVuezee(line) {
-                var dice_check = this.buildDiceArray()
-                if (dice_check.length === 1) {
-                    // It's possible to score another vuezee for a bonus of 100.
-                    if (line.scored && line.score !== 0) {
-                        line.score += 100
-                        this.scorecard.lower_total += 100
+                scoreYatzy(id) {
+                    let dice_check = this.buildDiceArray();
+                    alert(dice_check.length);
+                    if (dice_check.length === 1) {
+                        vm.scoreboard[id.id - 1].points = 50;
+                        vm.totalscore += 50;
                     }
-                    if (!line.scored) {
-                        line.score = 50
-                        this.scorecard.lower_total += 50
+                },
+
+                scoreChance(id) {
+                    let count = 0;
+                    for (let dice of this.dices) {
+                        count += dice.value
                     }
-                }
-            },
+                    this.scoreboard[id.id - 1].points = count;
+                    vm.totalscore += count;
+                },
 
-            scoreChance(line) {
-                for (var dice of this.all_dice) {
-                    line.score += dice.value
-                }
-                this.scorecard.lower_total += line.score
-            },
-
-            buildDiceArray() {
-                alert("ARRAY BUILDER");
-                let dice_check = [];
-                for (var dice of this.dices) {
-                    if (!dice_check.includes(dice.value)) {
-                        dice_check.push(dice.value);
-                        alert(dice_check);
+                buildDiceArray() {
+                    let dice_check = [];
+                    for (let dice of this.dices) {
+                        if (!dice_check.includes(dice.value)) {
+                            dice_check.push(dice.value);
+                        }
                     }
+                    return dice_check.sort();
+                },
+
+                buildDiceMap: function () {
+                    let dice_map = new Map();
+                    dice_map.set(1, 0);
+                    dice_map.set(2, 0);
+                    dice_map.set(3, 0);
+                    dice_map.set(4, 0);
+                    dice_map.set(5, 0);
+                    dice_map.set(6, 0);
+
+                    let dice_total = 0;
+
+                    for (let dice of this.dices) {
+                        dice_total += dice.value
+                        dice_map.set(dice.value, dice_map.get(dice.value) + 1)
+                    }
+                    return {dice_total: dice_total, dice_map_values: dice_map.values()}
                 }
-
-                return dice_check.sort()
-            },
-
-            buildDiceMap: function () {
-                let dice_map = new Map();
-                dice_map.set(1, 0);
-                dice_map.set(2, 0);
-                dice_map.set(3, 0);
-                dice_map.set(4, 0);
-                dice_map.set(5, 0);
-                dice_map.set(6, 0);
-
-                let dice_total = 0;
-
-                for (let dice of this.dices) {
-                    dice_total += dice.value
-                    dice_map.set(dice.value, dice_map.get(dice.value) + 1)
-                }
-                return {dice_total: dice_total, dice_map_values: dice_map.values()}
             }
-        }
-    });
+        })
+    ;
 </script>
 </body>
 </html>
