@@ -133,7 +133,7 @@
                                 entry.value = Math.floor(Math.random() * 6) + 1;
                             }
                         });
-                    <!-- this.rerolls++; -->
+                    this.rerolls++;
                 },
                 countpoints: function (id) {
                     id.claimed = true;
@@ -208,7 +208,6 @@
                         vm.totalscore += 50;
                         vm.bonusClaimed = true;
                     }
-
                 },
 
                 scoreOneOfAKind(id) {
@@ -218,7 +217,6 @@
                             score += dice.value
                         }
                         vm.scoreboard[id.id - 1].points = score;
-                        vm.totalscore += score;
                     })
                 },
 
@@ -228,7 +226,6 @@
                         if (value >= limit) {
                             id.value = dice_check.dice_total
                             this.scoreboard[id.id - 1].points += dice_check.dice_total;
-                            vm.totalscore += dice_check.dice_total;
                         }
                     }
                 },
@@ -247,7 +244,7 @@
                     }
                     if (has_2 && has_3) {
                         vm.scoreboard[id.id - 1].points = 25;
-                        vm.totalscore += 25;
+
                     } else {
                         vm.scoreboard[id.id - 1].points = 0;
                     }
@@ -262,7 +259,6 @@
                             JSON.stringify(dice_check) === JSON.stringify([3, 4, 5, 6])) {
                             id.score = 30;
                             vm.scoreboard[id.id - 1].points += 30;
-                            vm.totalscore += 30;
                         }
                     }
                 },
@@ -274,7 +270,6 @@
                             JSON.stringify(dice_check) === JSON.stringify([1, 2, 3, 4, 5]) ||
                             JSON.stringify(dice_check) === JSON.stringify([2, 3, 4, 5, 6])) {
                             vm.scoreboard[id.id - 1].points += 40;
-                            vm.totalscore += 40;
                         }
                     }
                 },
@@ -284,7 +279,6 @@
                     alert(dice_check.length);
                     if (dice_check.length === 1) {
                         vm.scoreboard[id.id - 1].points = 50;
-                        vm.totalscore += 50;
                     }
                 },
 
@@ -294,7 +288,6 @@
                         count += dice.value
                     }
                     this.scoreboard[id.id - 1].points = count;
-                    vm.totalscore += count;
                 },
 
                 buildDiceArray() {
