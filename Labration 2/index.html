@@ -24,20 +24,19 @@
                     ></yatzy-dice>
                     <br>
                     <button id="reroll_button" v-on:click="reroll" v-if="this.rerolls < 3">Roll the dice</button>
-                    <p>Du har kastat: {{rerolls}} gånger</p>
+                    <p>Du har kastat: {{rerolls}} av 3 gånger</p>
                 </div>
 
-                <div>Highscore</div>
             </div>
             <div class="scoreboard">
+                <header><button id="newGame" v-on:click="newgame">New Game</button></header>
                 <div class="topscore">
                     <table class="scoreboard-section" style="width:100%">
                         <caption>YATZY!</caption>
                         <thead>
                         <tr>
-                            <td class="section-title" width="20%">Upper section</td>
-                            <td class="section-title" width="60%">How to score</td>
-                            <td class="section-title" width="20%">Points</td>
+                            <td class="section-title" width="30%">Combo</td>
+                            <td class="section-title" width="70%">Points</td>
                         </tr>
                         </thead>
                         <tbody class="points-section">
@@ -53,21 +52,11 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="bottomscore">
-                    <table style="width: 100%">
-                        <thead>
-                        <tr>
-                            <td class="section-title" width="20%">Lower section</td>
-                            <td class="section-title" width="60%">How to score</td>
-                            <td class="section-title" width="20%">Points</td>
-                        </tr>
-                        </thead>
-                    </table>
+                <div>
+                    <h1 class="totalscore">Totalscore: {{totalscore}} points</h1>
                 </div>
-                <div class="totalscore">Totalscore: {{totalscore}}</div>
             </div>
         </div>
-
     </section>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -132,11 +121,10 @@
                                 entry.value = Math.floor(Math.random() * 6) + 1;
                             }
                         });
-                    <!--this.rerolls++;-->
+                    this.rerolls++;
                 },
                 countpoints: function (id) {
                     id.claimed = true;
-                    <!--let count = 0;-->
 
                     switch (id.name) {
                         case "Ones":
@@ -186,6 +174,9 @@
                     vm.newRound();
 
                 },
+                newgame: function() {
+                  location.reload();
+                },
                 newRound: function () {
                     vm.rerolls = 0;
                     this.dices.forEach(function (entry) {
@@ -194,20 +185,21 @@
                     });
                     let areAllClaimed = 0;
                     this.scoreboard.forEach(function (combo) {
-                        if (combo.claimed === true){
+                        if (combo.claimed === true) {
                             areAllClaimed++
                         }
                     });
-                    if (areAllClaimed === this.scoreboard.length){
+                    if (areAllClaimed === this.scoreboard.length) {
                         vm.calcBonus();
+                        alert("Nice! You got " + this.totalscore + " points in totalscore!")
                     }
                 },
 
                 sumScore: function () {
-                  let sum = 0;
-                  this.scoreboard.forEach(function (score) {
-                      sum += score.points;
-                  });
+                    let sum = 0;
+                    this.scoreboard.forEach(function (score) {
+                        sum += score.points;
+                    });
                     vm.totalscore = sum;
                 },
 
@@ -219,7 +211,7 @@
                         }
                     });
                     if (bonus >= 63) {
-                        alert("DU FICK BONUS!");
+                        alert("You got bonus! + 50 points");
                         vm.totalscore += 50;
                     }
                 },

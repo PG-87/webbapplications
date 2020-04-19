@@ -1,17 +1,16 @@
 /* MOBILE SCREEN MAX 767px */
 section {
-    background-color: grey;
     font-family: Roboto, Arial, serif;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 10px;
 }
-
 .main {
-    background-color: red;
+
 }
+
 .game-container {
-    background-color: pink;
+    background-color: darkblue;
     margin: 10px auto;
     justify-self: center;
     display: flex;
@@ -19,7 +18,7 @@ section {
 }
 
 .dice-and-highscore {
-    background-color: grey;
+    background-color: white;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -28,13 +27,12 @@ section {
 }
  .dice-and-highscore div {
      margin: 15px;
-     border: 1px solid black;
      background-color: white;
      height: 200px;
  }
 
  .scoreboard {
-     background-color: sandybrown;
+     background-color: darkblue;
      width: 66%;
      display: flex;
      flex-direction: column;
@@ -59,13 +57,9 @@ table {
 
 }
 
-.bottomscore {
-    display: none;
-}
-
 .claim_button {
     background-color: dodgerblue;
-    width: 70px;
+    width: 100px;
     border: none;
     color: white;
     padding: 5px 10px;
@@ -73,7 +67,7 @@ table {
     text-decoration: none;
     display: inline-block;
     font-size: 11px;
-    margin: 0px;
+    margin: 0;
     cursor: pointer;
 }
 
