@@ -121,7 +121,6 @@
                     {id: 12, points: 0, name: 'Chance', claimed: false},
                     {id: 13, points: 0, name: 'Yatzy', claimed: false}
                 ],
-                bonusClaimed: false,
                 rerolls: 0,
                 totalscore: 0
             },
@@ -133,11 +132,11 @@
                                 entry.value = Math.floor(Math.random() * 6) + 1;
                             }
                         });
-                    this.rerolls++;
+                    <!--this.rerolls++;-->
                 },
                 countpoints: function (id) {
                     id.claimed = true;
-                    let count = 0;
+                    <!--let count = 0;-->
 
                     switch (id.name) {
                         case "Ones":
@@ -183,6 +182,7 @@
                             return;
 
                     }
+                    vm.sumScore();
                     vm.newRound();
 
                 },
@@ -192,9 +192,23 @@
                         entry.value = Math.floor(Math.random() * 6) + 1;
                         entry.isSelected = false;
                     });
-                    if (vm.bonusClaimed === false) {
+                    let areAllClaimed = 0;
+                    this.scoreboard.forEach(function (combo) {
+                        if (combo.claimed === true){
+                            areAllClaimed++
+                        }
+                    });
+                    if (areAllClaimed === this.scoreboard.length){
                         vm.calcBonus();
                     }
+                },
+
+                sumScore: function () {
+                  let sum = 0;
+                  this.scoreboard.forEach(function (score) {
+                      sum += score.points;
+                  });
+                    vm.totalscore = sum;
                 },
 
                 calcBonus: function () {
@@ -205,8 +219,8 @@
                         }
                     });
                     if (bonus >= 63) {
+                        alert("DU FICK BONUS!");
                         vm.totalscore += 50;
-                        vm.bonusClaimed = true;
                     }
                 },
 
@@ -276,7 +290,6 @@
 
                 scoreYatzy(id) {
                     let dice_check = this.buildDiceArray();
-                    alert(dice_check.length);
                     if (dice_check.length === 1) {
                         vm.scoreboard[id.id - 1].points = 50;
                     }
